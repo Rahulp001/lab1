@@ -1,0 +1,164 @@
+package hotel.room.reservation.system.view;
+import java.util.Scanner;
+
+import hotel.room.reservation.system.model.Customer;
+import hotel.room.reservation.system.model.Room;
+
+public class Main {
+	public static void main(String[]args) {
+		
+		Room obj = new Room();
+		Customer obj1 = new Customer();
+		Scanner Sc= new Scanner(System.in);
+		System.out.println("welcome to citrus hotels");
+		System.out.println("Enter detail for booking room");
+		System.out.println("enter the name");
+		String name= Sc.next();
+		obj1.setName(name);
+		System.out.println("enter your age:");
+		int age = Sc.nextInt();
+		obj1.setAge(age);
+		for(int i=0;i<6;i++) {
+		System.out.println("Enter the room of your choice");
+		System.out.println("1.single bed non-ac 2.single bed ac 3.double bed non-ac  4.double bed non-ac 5.Exit");
+		int ch=Sc.nextInt();
+		
+		switch(ch) {
+		case 1:
+			System.out.println("your single bed non ac room is booked");
+			obj.setRoomType("single bed AC");
+			break;
+		case 2:
+			System.out.println("your single bed  ac room is booked");
+			obj.setRoomType("single bed non AC");
+			break;
+		case 3:
+			System.out.println("your souble bed non ac room is booked");
+			obj.setRoomType("double bed AC");
+			break;
+		case 4:
+			System.out.println("your double bed ac room is booked");
+			obj.setRoomType("double bed non AC");
+			break;
+		case 5:
+			System.out.println("you have exited");
+			System.exit(5);
+			
+		default:
+				System.out.println("select correct choice");
+			
+		}
+		
+		}
+	}
+
+}
+--------------------------------------------------------------------
+package hotel.room.reservation.system.model;
+
+public class Room {
+	private int roomNumber;
+	private String roomType;
+	public Room(){
+		super();
+	}
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+	public String getRoomType() {
+		return roomType;
+	}
+	public void setRoomType(String roomType) {
+		this.roomType = roomType;
+	}
+	public Room(int roomNumber, String roomType) {
+		super();
+		this.roomNumber = roomNumber;
+		this.roomType = roomType;
+	}
+	@Override
+	public String toString() {
+		return "Room [roomNumber=" + roomNumber + ", roomType=" + roomType + "]";
+	}
+
+}
+------------------------------------------------------------
+package hotel.room.reservation.system.model;
+
+public class Customer {
+	private String name;
+	private int age;
+	public Customer() {
+		super();
+	}
+	
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setAge(int age) {
+		this.age=age;
+	}
+	public int getAge() {
+		return age;
+	}
+	
+	public Customer(String name, int age) {
+		super();
+		this.name = name;
+		this.age = age;
+	}
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", age=" + age + "]";
+	}
+
+}
+---------------------------------------------------------
+package hotel.room.reservation.system.dao;
+
+public class RoomDoa {
+	
+
+}
+-------------------------------------------------
+package hotel.room.reservation.system.exception;
+
+public class CustomException extends Exception {
+	public CustomException(String Str) {
+		super(Str);
+	}
+	
+}
+-------------------------------------------------------
+package hotel.room.reservation.system.service;
+
+import hotel.room.reservation.system.exception.CustomException;
+
+public class RoomService {
+	private boolean s=true;
+
+		
+	public boolean isS() {
+		return s;
+	}
+
+
+	public void setS(boolean s) {
+		this.s = s;
+	}
+
+
+	public void isRoomAvaiable() throws CustomException {
+		if(s==false) {
+			throw new CustomException("room is not available");
+		}		
+	}
+	
+
+}
